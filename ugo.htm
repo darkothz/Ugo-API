@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ugo Informações</title>
+    <link rel="shortcut icon" type="image/png" href="ugopreto.ico"/>
+    <link rel="stylesheet" href=./style.css >
+</head>
+<body>
+    <div class="center">
+    <img src="ugopng.png" height="120px">
+</div>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu dropdown</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="dp-menu">
+        <ul>
+            <li><a href="#">Informações</a></li>
+            <li><a href="#">Previsão de tempo</a>
+            <li><a href="#">Bitcoin</a></li>
+            <li><a href="#">Cotação Real para Dólar</a></li>
+            <li><a href="#cep">Consulte CEP</a></li>
+            <li><a href="#">Notícias</a></li>
+        </ul>
+    </nav>
+</body>
+
+</html>
+<details class="bigode"><summary><b>Quem é Ugo?</b></summary><br>Ugo é um esbelto jovem de 16 anos. É fã de jogos  como League of Legends, Dead Cells e Hollow Knight. No momento, ele estuda na escola FAETEC Amauri Cesar Vieira, em Volta Redonda, onde tira boas notas e é um bom aluno.
+</details>
+<div id="weather-container"></div>
+
+<script>
+    // Replace 'YOUR_API_KEY' with your actual OpenWeatherMap API key
+    const apiKey = 'YOUR_API_KEY';
+    const weatherContainer = document.getElementById('weather-container');
+
+    // Fetch weather data from the API
+    function fetchWeather(city) {
+        const apiUrl = `https://console.hgbrasil.com/keys/d2ce30bc-84b7-42e9-8bf9-5af2c1f40f22`;
+        
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => displayWeather(data))
+            .catch(error => console.error('Error fetching data:', error));
+    }
+
+    // Display weather data on the webpage
+    function displayWeather(data) {
+        const cityName = data.name;
+        const temperature = data.main.temp;
+        const description = data.weather[0].description;
+        
+        const weatherHtml = `
+            <h2>${cityName}</h2>
+            <p>Temperature: ${temperature}°C</p>
+            <p>Weather: ${description}</p>
+        `;
+        
+        weatherContainer.innerHTML = weatherHtml;
+    }
+
+    // Prompt the user for a city and fetch weather data
+    const city = prompt('Coloque o nome de uma cidade para prever o clima:');
+    if (city) {
+        fetchWeather(city);
+    }
+</script>
+
+</body>
+</html>
